@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MY KJ 💖</title>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Georgia", serif;
+  overflow: hidden;
+  text-align: center;
+}
+
+.card {
+  background: white;
+  padding: 40px;
+  border-radius: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.2);
+  max-width: 600px;
+  position: relative;
+  z-index: 1; /* Ensure card is above hearts */
+}
+
+h1 {
+  color: #ff4d6d;
+}
+
+button {
+  font-size: 20px;
+  padding: 12px 25px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+  transition: 0.3s;
+}
+
+#yes {
+  background: #ff4d6d;
+  color: white;
+}
+
+#yes:hover {
+  transform: scale(1.1);
+}
+
+#no {
+  background: #ccc;
+  position: absolute;
+}
+
+#messagePage {
+  display: none;
+  animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.message-text {
+  white-space: pre-line;
+  font-size: 18px;
+  color: #333;
+}
+
+/* Floating hearts */
+.heart {
+  position: absolute;
+  color: pink;
+  font-size: 20px;
+  animation: float 6s linear infinite;
+  z-index: 0; /* Hearts behind everything */
+}
+
+@keyframes float {
+  from { transform: translateY(100vh); opacity: 1; }
+  to { transform: translateY(-10vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" id="questionPage">
+  <h1>MY KJ 💕</h1>
+  <h2>Will you be my Valentine? 💘</h2>
+
+  <button id="yes">Yes 💗</button>
+  <button id="no">No 💔</button>
+</div>
+
+<div class="card" id="messagePage">
+  <h1>Happy Valentine's Day 🌹</h1>
+  <div class="message-text">
+Hey Baby. Happy Valentines Day 🌹
+
+You have no idea how much I wish I could be there with you right now to give you some flowers and express my love, just be with you holding your hand. But I guess that'll be something to look forward to next year.
+
+Today, all day I’ve just been thinking how much love I have for you KJ. How much you mean to me, how much I miss youuu!
+
+They say you know it's real love when it creates moments that sting because that love means so much to you — I know I've made mistakes that have disappointed you in the past but that’s where I’ll improve for you. Become better for you x
+
+I want you to always know how much I love you and how precious you are to me, how much I love seeing you smile and how great it is knowing I have someone that loves me for me and accepts my flaws and is there for me when I need you most.
+
+You are everything to me and I can’t wait to have these moments where I can look at that beautiful face and stare into those gorgeous eyes and tell you in person how much I love you.
+
+I can’t wait for our future baby. It’s all I want and it’s all I'm praying for.
+
+You will forever be MY Valentines for years to come, MY KJ x
+
+I Love you!
+Your Hamza x
+  </div>
+</div>
+
+<script>
+const no = document.getElementById("no");
+const yes = document.getElementById("yes");
+const questionPage = document.getElementById("questionPage");
+const messagePage = document.getElementById("messagePage");
+
+// Make the No button run away
+no.addEventListener("mouseover", () => {
+  no.style.left = Math.random() * 70 + "%";
+  no.style.top = Math.random() * 70 + "%";
+});
+
+// Confetti + transition on Yes
+yes.addEventListener("click", () => {
+  // Launch confetti
+  confetti({
+    particleCount: 200,
+    spread: 100,
+    origin: { y: 0.6 }
+  });
+
+  // Delay then show message page
+  setTimeout(() => {
+    questionPage.style.display = "none";
+    messagePage.style.display = "block";
+  }, 1500);
+});
+
+// Floating hearts
+function createHeart(){
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 6000);
+}
+
+// Create hearts continuously
+setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
